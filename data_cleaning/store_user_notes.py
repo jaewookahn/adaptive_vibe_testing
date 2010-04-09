@@ -1,5 +1,15 @@
 #!/usr/bin/python
 
+import MySQLdb
+
+con = MySQLdb.connect('localhost', 'root', 'fkffk123', 'yournews-tdt4')
+cur = con.cursor()
+
+def get_system(userno, topicid):
+	cur.execute("select distinct userid from history where userid like 'vs_-%s-%s'" % (userno, topicid))
+	row = cur.fetchone()
+	return row[0].split("-")[0]
+
 f = open("user_notes.txt")
 
 qcount = {"40009":7, "40048":8, "40021":12}
@@ -17,6 +27,8 @@ for s in f:
 		userno, topicid = temp2
 		system = ''
 	
+	system = get_system(userno, topicid)
+
 	# print userno, topicid, system, answers
 
 	for i in range(min(len(answers), qcount[topicid])):
@@ -25,4 +37,4 @@ for s in f:
 			continue
 
 		for answer in answers[i].split(" "):
-			print userno, topicid, i + 1, answer
+			print system, userno, topicid, i + 1, answer
