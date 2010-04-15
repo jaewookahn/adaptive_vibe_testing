@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
-import MySQLdb
+import MySQLdb, sys
 from tdt4rel import Judge
 
-con = MySQLdb.connect('localhost', 'root', 'fkffk123', 'yournews-tdt4')
+con = MySQLdb.connect('localhost', 'root', '!!berkeley', 'yournews-tdt4')
 cur = con.cursor()
 
 def get_note(system, userno, topicid, note_no):
@@ -26,8 +26,12 @@ for s in f:
 	if note_no == '':
 		continue
 		
-	print "#", note_no, system, userno, topicid, 
+	print system, userno, topicid, q, note_no, 
 	nid, docid, note = get_note(system, userno, topicid, note_no)
-	pr = j.check_annotation(topic, docid, nid)	
 	
-	print nid, docid, note, pr
+	note = note.replace("\r\n", " ")
+	note = note.lower()
+	
+	prec = j.check_annotation(topicid, docid, note)	
+	
+	print nid, docid, prec[1]

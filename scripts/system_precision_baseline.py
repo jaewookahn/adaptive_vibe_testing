@@ -42,4 +42,4 @@ for row in cur:
 
 	prec5, prec10, rels = get_precision(topicid, docs)
 	
-	print userno, prec5, prec10
+	print userno, topicid, prec5, prec10
