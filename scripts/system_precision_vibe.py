@@ -2,6 +2,7 @@
 
 from tdt4rel import Judge
 import MySQLdb, sys
+from dbconfig import *
 
 j = Judge()
 
@@ -25,8 +26,7 @@ def get_rel_top(docs, topicid):
 		return 0
 	return float(sum(rels)) / len(rels)
 
-
-con = MySQLdb.connect('localhost', 'jahn', 'rksekfvm', 'jahn')
+con = MySQLdb.connect(HOST, USER, PASS, DB)
 cur = con.cursor()
 
 cur.execute("select userid, info from history where action = 'reset_visualization'")
