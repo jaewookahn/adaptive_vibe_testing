@@ -12,9 +12,14 @@ print(res)
 res <- aggregate(ds$V5, mean, by=list(ds$V1, ds$V3))
 print(res)
 
-dsb <- subset(ds, ds$V3 == 40009 & ds$V1 == 'vsb')
-dse <- subset(ds, ds$V3 == 40009 & ds$V1 == 'vse')
-dsn <- subset(ds, ds$V3 == 40009 & ds$V1 == 'vsn')
+dsb <- subset(ds, ds$V3 == 40021 & ds$V1 == 'vsb')
+dse <- subset(ds, ds$V3 == 40021 & ds$V1 == 'vse')
+dsn <- subset(ds, ds$V3 == 40021 & ds$V1 == 'vsn')
+
+# dsb <- subset(ds, ds$V1 == 'vsb')
+# dse <- subset(ds, ds$V1 == 'vse')
+# dsn <- subset(ds, ds$V1 == 'vsn')
+
 
 res <- t.test(dsb$V5, dse$V5)
 print(res)
