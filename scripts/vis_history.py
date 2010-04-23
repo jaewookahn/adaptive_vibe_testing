@@ -11,12 +11,22 @@ cur.execute("select userid, action, info from history where action = 'reset_visu
 
 j = Judge()
 
+recs = []
+old_userid = ""
+
 for row in cur:
 	userid, action, info = row
 	dim, pois, docs = info.split("\t")
 	system, userno, topicid = userid.split("-")
 	dimx, dimy = dim.split(":")[1].split(" ")[0].split(",")
 	docs = docs.strip().split(":")[1].split(" ")
+
+	if old_userid != userid:
+		recid = 1
+
+	recid_full = "%s %s %s %s" % (system, userno, topicid, recid)
+	if recid_full not in recs:
+		recs.append(recid_full)
 
 	for doc in docs:
 		try:
@@ -28,4 +38,11 @@ for row in cur:
 			sys.exit(1)
 			
 		rel = j.check(topicid, docno)
-		print system, userno, topicid, dimx, dimy, docno, docx, docy, rel
+		# rel = 1
+		print system, userno, topicid, recid, dimx, dimy, docno, docx, docy, rel
+					
+	recid += 1
+	old_userid = userid
+			
+for rec in recs:
+	print "#", rec
