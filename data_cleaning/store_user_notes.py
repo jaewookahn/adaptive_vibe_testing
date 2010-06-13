@@ -2,7 +2,7 @@
 
 import MySQLdb
 
-con = MySQLdb.connect('localhost', 'root', 'fkffk123', 'yournews-tdt4')
+con = MySQLdb.connect('localhost', 'root', '!!berkeley', 'yournews-tdt4')
 cur = con.cursor()
 
 def get_system(userno, topicid):

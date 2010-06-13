@@ -1,0 +1,533 @@
+vsb 01 40009 0.076
+None
+vsb 01 40009 0.08
+None
+vsb 01 40009 0.08
+None
+vsb 01 40009 0.08
+None
+vsb 01 40009 0.08
+None
+vsb 01 40009 0.08
+None
+vsb 01 40009 0.08
+None
+vsb 01 40009 0.076
+None
+vsb 01 40009 0.076
+None
+vsb 01 40009 0.076
+None
+vsb 01 40009 0.076
+None
+vsb 01 40009 0.076
+None
+vsb 01 40009 0.076
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 01 40048 0.108
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.08
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.076
+None
+vse 02 40009 0.074
+None
+vse 02 40009 0.074
+None
+vse 10 40048 0.102
+None
+vse 10 40048 0.132
+None
+vse 10 40048 0.102
+None
+vse 10 40048 0.048
+None
+vse 10 40048 0.108
+None
+vse 10 40048 0.066
+None
+vse 10 40048 0.098
+None
+vse 10 40048 0.1
+None
+vse 10 40048 0.1
+None
+vse 10 40048 0.09
+None
+vse 10 40048 0.09
+None
+vse 10 40048 0.088
+None
+vse 10 40048 0.088
+None
+vse 10 40048 0.088
+None
+vse 10 40048 0.088
+None
+vse 10 40048 0.09
+None
+vse 10 40048 0.09
+None
+vse 10 40048 0.098
+None
+vse 10 40048 0.098
+None
+vse 10 40048 0.102
+None
+vse 10 40048 0.102
+None
+vse 10 40048 0.094
+None
+vse 10 40048 0.094
+None
+vse 10 40048 0.094
+None
+vse 10 40048 0.094
+None
+vse 10 40048 0.092
+None
+vse 10 40048 0.092
+None
+vse 10 40048 0.09
+None
+vse 10 40048 0.09
+None
+vse 10 40048 0.102
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.072
+None
+vse 11 40009 0.074
+None
+vse 11 40009 0.07
+None
+vse 11 40009 0.07
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.076
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.078
+None
+vse 11 40009 0.074
+None
+vse 11 40009 0.074
+None
+vse 11 40009 0.074
+None
+vse 11 40009 0.074
+None
+vse 11 40009 0.074
+None
+vsn 11 40048 0.124
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.118
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 11 40048 0.114
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.076
+None
+vsn 03 40009 0.07
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.238
+None
+vse 03 40021 0.244
+None
+vse 03 40021 0.244
+None
+vse 03 40021 0.244
+None
+vse 03 40021 0.244
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.238
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 03 40021 0.242
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vse 20 40009 0.076
+None
+vsn 20 40048 0.132
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vsn 20 40048 0.13
+None
+vse 04 40021
