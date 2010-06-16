@@ -74,9 +74,18 @@ umtime = bsddb.btopen('../misc/umtime.bsddb', 'r')
 con = MySQLdb.connect('localhost', 'root', '!!berkeley', 'yournews-tdt4')
 cur = con.cursor()
 
-cur.execute("select unix_timestamp(datetime), userid, info from history where action = 'reset_visualization' and userid like 'vs%' and userid != 'vst'")
+cur.execute("select unix_timestamp(datetime), userid from history where action = 'login' and (userid like 'vse%' or userid like 'vsn%') and userid != 'vst' order by datetime asc")
 
-print "sys userno topicid top5 top10 inum avgx ratiox"
+ltime = {}
+for row in cur:
+	datetime, userid = row
+	if not ltime.has_key(userid):
+		ltime[userid] = datetime
+
+cur.execute("select unix_timestamp(datetime), userid, info from history where action = 'reset_visualization' and (userid like 'vse%' or userid like 'vsn%') and userid != 'vst'")
+
+print "sys userno topicid top5 top10 inum avgx ratiox time"
+
 for row in cur:
 	datetime, userid, info = row
 
@@ -99,4 +108,4 @@ for row in cur:
 	# system, userno, topicid, get_rel_by_rmargin(int(vis_size[0]), docs, topicid)
 	
 	rel, avg_x, ratio_x = get_rel_top(docs, topicid)
-	print system, userno, topicid, "-1", rel, inUm, avg_x, ratio_x
+	print system, userno, topicid, "-1", rel, inUm, avg_x, ratio_x, datetime - ltime[userid]

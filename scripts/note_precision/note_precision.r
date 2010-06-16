@@ -52,3 +52,11 @@ res <- wilcox.test(d21b$prec, d21e$prec, alternative='less'); print(res)
 res <- wilcox.test(d21b$prec, d21n$prec); print(res)
 res <- wilcox.test(d21b$prec, d21n$prec, alternative='less'); print(res)
 
+##################################
+dn <- read.table('../../data/user_notes_annotated.txt', header=T)
+aggregate(dn$prec, sum, by=list(dn$sys))
+aggregate(dn$prec, sum, by=list(dn$sys,dn$topicid))
+aggregate(dn$prec, mean, by=list(dn$sys,dn$topicid))
+kruskal.test(prec~sys, data=dn)
+pairwise.wilcox.test(dn$prec, dn$sys)
+

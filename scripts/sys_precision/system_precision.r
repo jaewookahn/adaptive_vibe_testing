@@ -1,12 +1,17 @@
 library(car)
 library(gplots)
 
-db<-read.table('system_precision_baseline.txt', sep=' ', header=T)
-dv<-read.table('system_precision_vistop.txt', sep=' ', header=T)
+db<-read.table('../../data/system_precision_baseline.txt', sep=' ', header=T)
+dv<-read.table('../../data/system_precision_vistop.txt', sep=' ', header=T)
 dall <- rbind(db, dv)
 
-dclean <- subset(dall, dall$userno != '1' & dall$userno != '2' & dall$userno != '29')
+dclean <- subset(dall, dall$userno != 1 & dall$userno != 2 & dall$userno != 29)
+# dclean <- subset(dall, dall$userno != 1 & dall$userno != 2 & dall$userno < 28 & dall$userno != 10)
+# dclean <- subset(dall, dall$userno < 28 & dall$userno > 2)
 
+#######################################
+# OVERALL
+#######################################
 
 cat("== ANOVA ============================================================\n")
 
@@ -20,7 +25,7 @@ shapiro.test(db$top10)
 shapiro.test(de$top10)
 shapiro.test(dn$top10)
 
-interaction.plot(d$topicid, d$sys, d$top10, type="b", col=c(1:3), leg.bty="o", leg.bg="beige", lwd=2, pch=c(18,24,22), xlab='Topicid', ylab='Precision@10', main='System Precision')
+interaction.plot(d$topicid, d$sys, d$top10, type="b", col=c(1:3), leg.bty="o", leg.bg="beige", lwd=2, pch=c(18,24,22), xlab='Topicid', ylab='Precision@10', main='System Precision', trace.label='System')
 readline()
 plotmeans(d$top10~d$sys, xlab='System', ylab='Precision@10', label='System Precision')
 readline()
@@ -29,9 +34,43 @@ fit <- aov(top10~sys, d)
 print(summary(fit))
 print(TukeyHSD(fit))
 
-wilcox.test(db$top10, de$top10)
-wilcox.test(db$top10, dn$top10)
+cat("== Non-parametric ===================================================\n")
 
+res <- kruskal.test(top10~sys, data=d); print(res)
+res <- pairwise.wilcox.test(d$top10, d$sys); print(res)
+
+# cat("== two-side =========================================================\n")
+# 
+res <- wilcox.test(db$top10, de$top10); print(res)
+res <- wilcox.test(db$top10, dn$top10); print(res)
+# 
+# cat("== one-side =========================================================\n")
+# 
+# res <- wilcox.test(db$top10, de$top10, alternative='less'); print(res)
+# res <- wilcox.test(db$top10, dn$top10, alternative='less'); print(res)
+# 
+# cat("== by topic =========================================================\n")
+# 
+# db09 <- subset(db, db$topicid == '40009')
+# db48 <- subset(db, db$topicid == '40048')
+# db21 <- subset(db, db$topicid == '40021')
+# de09 <- subset(de, de$topicid == '40009')
+# de48 <- subset(de, de$topicid == '40048')
+# de21 <- subset(de, de$topicid == '40021')
+# dn09 <- subset(dn, dn$topicid == '40009')
+# dn48 <- subset(dn, dn$topicid == '40048')
+# dn21 <- subset(dn, dn$topicid == '40021')
+# 
+# res <- wilcox.test(db09$top10, de09$top10, alternative='less'); print(res)
+# res <- wilcox.test(db09$top10, dn09$top10, alternative='less'); print(res)
+# res <- wilcox.test(db48$top10, de48$top10, alternative='less'); print(res)
+# res <- wilcox.test(db48$top10, dn48$top10, alternative='less'); print(res)
+# res <- wilcox.test(db21$top10, de21$top10, alternative='less'); print(res)
+# res <- wilcox.test(db21$top10, dn21$top10, alternative='less'); print(res)
+
+#######################################
+# In UM
+#######################################
 
 cat("== ANOVA (in um) ====================================================\n")
 
@@ -54,70 +93,36 @@ fit <- aov(top10~sys, dinum)
 print(summary(fit))
 print(TukeyHSD(fit))
 
-wilcox.test(db$top10, de$top10)
-wilcox.test(db$top10, dn$top10)
+cat("== Non-parametric (in um) ===========================================\n")
 
+res <- kruskal.test(dinum$top10, dinum$sys); print(res)
+res <- pairwise.wilcox.test(dinum$top10, dinum$sys); print(res)
 
-# db <- subset(dbclean, dbclean$topicid == '40009')
-# de <- subset(dvclean, dvclean$sys == 'vse' & dvclean$topicid == '40009')
-# dn <- subset(dvclean, dvclean$sys == 'vsn' & dvclean$topicid == '40009')
+# cat("== two-side =========================================================\n")
 # 
-# print(wilcox.test(db$top10, de$prec))
-
-
-
-# dbs <- subset(dbclean, dbclean$topicid == '40009')
-# des <- subset(dvclean, dvclean$sys == 'vse' & dvclean$topicid == '40009')
-# dns <- subset(dvclean, dvclean$sys == 'vsn' & dvclean$topicid == '40009')
-
-
-# cat("=================== 40009 ===============\n")
+# res <- wilcox.test(db$top10, de$top10); print(res)
+# res <- wilcox.test(db$top10, dn$top10); print(res)
 # 
-# des <- subset(dvclean, dvclean$V3 == '40009' & dvclean$V1 == 'vse')
-# dns <- subset(dvclean, dvclean$V3 == '40009' & dvclean$V1 == 'vsn')
-# dbs <- subset(dbclean, dbclean$V2 == '40009')
+# cat("== one-side =========================================================\n")
 # 
-# print(mean(dbs$V3))
-# print(mean(dbs$V4))
-# print(mean(des$V4))
-# print(mean(dns$V4))
+# res <- wilcox.test(db$top10, de$top10, alternative='less'); print(res)
+# res <- wilcox.test(db$top10, dn$top10, alternative='less'); print(res)
 # 
-# res <- wilcox.test(dbs$V3, des$V4, alternative='less'); print(res)
-# res <- wilcox.test(dbs$V4, des$V4, alternative='less'); print(res)
+# cat("== by topic =========================================================\n")
 # 
-# res <- wilcox.test(dbs$V3, dns$V4, alternative='less'); print(res)
-# res <- wilcox.test(dbs$V4, dns$V4, alternative='less'); print(res)
-
-# cat("=================== 40048 ===============\n")
+# db09 <- subset(db, db$topicid == '40009')
+# db48 <- subset(db, db$topicid == '40048')
+# db21 <- subset(db, db$topicid == '40021')
+# de09 <- subset(de, de$topicid == '40009')
+# de48 <- subset(de, de$topicid == '40048')
+# de21 <- subset(de, de$topicid == '40021')
+# dn09 <- subset(dn, dn$topicid == '40009')
+# dn48 <- subset(dn, dn$topicid == '40048')
+# dn21 <- subset(dn, dn$topicid == '40021')
 # 
-# des <- subset(dvclean, dvclean$V3 == '40048' & dvclean$V1 == 'vse')
-# dns <- subset(dvclean, dvclean$V3 == '40048' & dvclean$V1 == 'vsn')
-# dbs <- subset(dbclean, dbclean$V2 == '40048')
-# 
-# print(mean(dbs$V3))
-# print(mean(dbs$V4))
-# print(mean(des$V4))
-# print(mean(dns$V4))
-# 
-# res <- wilcox.test(dbs$V3, des$V4, alternative='less'); print(res)
-# res <- wilcox.test(dbs$V4, des$V4, alternative='less'); print(res)
-# 
-# res <- wilcox.test(dbs$V3, dns$V4, alternative='less'); print(res)
-# res <- wilcox.test(dbs$V4, dns$V4, alternative='less'); print(res)
-# 
-# cat("=================== 40021 ===============\n")
-# 
-# des <- subset(dvclean, dvclean$V3 == '40021' & dvclean$V1 == 'vse')
-# dns <- subset(dvclean, dvclean$V3 == '40021' & dvclean$V1 == 'vsn')
-# dbs <- subset(dbclean, dbclean$V2 == '40021')
-# 
-# print(mean(dbs$V3))
-# print(mean(dbs$V4))
-# print(mean(des$V4))
-# print(mean(dns$V4))
-# 
-# res <- wilcox.test(dbs$V3, des$V4, alternative='less'); print(res)
-# res <- wilcox.test(dbs$V4, des$V4, alternative='less'); print(res)
-# 
-# res <- wilcox.test(dbs$V3, dns$V4, alternative='less'); print(res)
-# res <- wilcox.test(dbs$V4, dns$V4, alternative='less'); print(res)
+# res <- wilcox.test(db09$top10, de09$top10, alternative='less'); print(res)
+# res <- wilcox.test(db09$top10, dn09$top10, alternative='less'); print(res)
+# res <- wilcox.test(db48$top10, de48$top10, alternative='less'); print(res)
+# res <- wilcox.test(db48$top10, dn48$top10, alternative='less'); print(res)
+# res <- wilcox.test(db21$top10, de21$top10, alternative='less'); print(res)
+# res <- wilcox.test(db21$top10, dn21$top10, alternative='less'); print(res)
