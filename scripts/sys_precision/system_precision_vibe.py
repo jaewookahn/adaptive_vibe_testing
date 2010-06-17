@@ -5,6 +5,7 @@ from tdt4rel import Judge
 import MySQLdb, sys
 from dbconfig import *
 import bsddb
+from ndcg import get_ndcg
 
 j = Judge()
 
@@ -43,9 +44,12 @@ def get_rel_top(docs, topicid):
 		else:
 			ratio_x = float(avg_x - minx) / (maxx - minx)
 		
+	ndcg = get_ndcg(rels)
+		
 	if len(rels) == 0:
-		return 0, avg_x, ratio_x
-	return (float(sum(rels)) / len(rels), avg_x, ratio_x)
+		return 0, ndcg, avg_x, ratio_x
+		
+	return (float(sum(rels)) / len(rels), ndcg, avg_x, ratio_x)
 
 def get_rel_by_rmargin(width, docs, topicid):
 	rels = []
@@ -84,7 +88,7 @@ for row in cur:
 
 cur.execute("select unix_timestamp(datetime), userid, info from history where action = 'reset_visualization' and (userid like 'vse%' or userid like 'vsn%') and userid != 'vst'")
 
-print "sys userno topicid top5 top10 inum avgx ratiox time"
+print "sys userno topicid top5 top10 ndcg inum avgx ratiox time"
 
 for row in cur:
 	datetime, userid, info = row
@@ -107,5 +111,5 @@ for row in cur:
 
 	# system, userno, topicid, get_rel_by_rmargin(int(vis_size[0]), docs, topicid)
 	
-	rel, avg_x, ratio_x = get_rel_top(docs, topicid)
-	print system, userno, topicid, "-1", rel, inUm, avg_x, ratio_x, datetime - ltime[userid]
+	rel, ndcg, avg_x, ratio_x = get_rel_top(docs, topicid)
+	print system, userno, topicid, "-1", rel, ndcg, inUm, avg_x, ratio_x, datetime - ltime[userid]

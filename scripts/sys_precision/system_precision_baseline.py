@@ -3,6 +3,7 @@ import sys; sys.path.append("../common")
 from tdt4rel import Judge
 import MySQLdb, sys
 import bsddb
+from ndcg import get_ndcg
 
 def get_precision(topicid, docs):
 	j = Judge()
@@ -10,7 +11,9 @@ def get_precision(topicid, docs):
 	for docno in docs:
 		rel = j.check(topicid, docno)
 		rels.append(rel)
-	return (sum(rels[:5]) / 5., sum(rels) /10., rels)
+	ndcg = get_ndcg(rels)
+		
+	return (sum(rels[:5]) / 5., sum(rels) /10., ndcg, rels)
 
 def average(list):
 	return sum(list) / float(len(list))
@@ -33,7 +36,7 @@ else:
 
 cur.execute(q)
 
-print "sys userno topicid top5 top10 inum"
+print "sys userno topicid top5 top10 ndcg inum"
 for row in cur:
 	datetime, userid, info = row
 
@@ -44,7 +47,7 @@ for row in cur:
 	ret_count = temp[1]
 	docs = temp[2:]
 
-	prec5, prec10, rels = get_precision(topicid, docs)
+	prec5, prec10, ndcg, rels = get_precision(topicid, docs)
 	
 	if umtime.has_key(userid):
 		if datetime > int(umtime[userid]):
@@ -54,4 +57,4 @@ for row in cur:
 	else:
 		inUm = 0
 	
-	print 'vsb', userno, topicid, prec5, prec10, inUm
+	print 'vsb', userno, topicid, prec5, prec10, ndcg, inUm
