@@ -2,10 +2,10 @@ library(car)
 library(gplots)
 
 ds <- read.table("../../data/system_precision_vistop_with_time.txt", header=T)
-d <- subset(ds, ds$userno != 1 & ds$userno != 2 & ds$userno != 29)
+d <- subset(ds, userno > 2 & userno != 29)
 
 
-d <- subset(d, d$inum == 1)
+d <- subset(d, inum == 1)
 
 
 # d1 <- subset(d, d$time < 300)
@@ -51,8 +51,8 @@ res <- TukeyHSD(fit); print(res)
 levene.test(ratiox~timeslot, data=dbin)
 shapiro.test(dbin$ratiox)
 
-interaction.plot(dbin$timeslot, dbin$sys, dbin$ratiox, type="b", col=c(1:3), leg.bty="o", leg.bg="beige", lwd=2, pch=c(18,24,22), xlab='Time', ylab='Relative Location', main='System Precision')
+interaction.plot(dbin$timeslot, dbin$sys, dbin$ratiox, type="b", col=c(1:3), leg.bty="o", leg.bg="beige", lwd=2, pch=c(18,24,22), xlab='Time (5min each)', ylab='Horizontal Position', main='Change of top 10 document locations by time', trace.label='System')
 readline()
-interaction.plot(dbin$timeslot, dbin$topicid, dbin$ratiox, type="b", col=c(1:3), leg.bty="o", leg.bg="beige", lwd=2, pch=c(18,24,22), xlab='Time', ylab='Relative Location', main='System Precision')
+interaction.plot(dbin$timeslot, dbin$topicid, dbin$ratiox, type="b", col=c(1:3), leg.bty="o", leg.bg="beige", lwd=2, pch=c(18,24,22), xlab='Time (5min each)', ylab='Horizontal Position', main='Change of top 10 document locations by time', trace.label='Topic')
 readline()
-plotmeans(dbin$ratiox~dbin$timeslot, xlab='System', ylab='Precision@10', label='System Precision')
+plotmeans(dbin$ratiox~dbin$timeslot, xlab='Time (5min each)', ylab='Precision@10', label='System Precision', main='Change of precision by time')
