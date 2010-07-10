@@ -1,7 +1,7 @@
 library(reshape)
 library(sqldf)
 
-n <- read.table('../../data/note_precision_noerr.txt', header=T)
+d <- read.table('../../data/note_precision_noerr.txt', header=T)
 n <- subset(d, userno > 2 & userno != 29)
 
 res <- aggregate(n$p, mean, by=list(n$sys)); print(res)
@@ -19,6 +19,9 @@ user_notel <- function(data, sysstr) {
 	res <- rename(res, c(Group.1="userno", x="p"));
 	return(res);
 }
+
+##
+## repeated
 
 nb <- user_notep(n, 'vsb')
 ne <- user_notep(n, 'vse')
@@ -39,58 +42,24 @@ nlm <- sqldf('select nb.userno,nb.p as NB, ne.p as NE, nn.p as NN from nlb nb,nl
 res <- wilcox.exact(nlm$NB, nlm$NE, paired=T, alternative='less'); print(res)
 res <- wilcox.exact(nlm$NB, nlm$NN, paired=T, alternative='less'); print(res)
 
+##
+## non-repeated
 
-# dbs <- subset(d, sys == 'vsb')
-# des <- subset(d, sys == 'vse')
-# dns <- subset(d, sys == 'vsn')
-# 
-# ##
-# ## calculate per-user scores
-# ##
-# 
-# user_ndcg <- function(data) {
-# 	res <- aggregate(data$ndcg, mean, by=list(data$userno));
-# 	res <- rename(res, c(Group.1="userno", x="ndcg"));
-# 	return(res);
-# }
-# 
-# user_p10 <- function(data) {
-# 	res <- aggregate(data$top10, mean, by=list(data$userno));
-# 	res <- rename(res, c(Group.1="userno", x="top10"));
-# 	return(res);
-# }
-# 
-# 
-# db <- user_ndcg(dbs)
-# de <- user_ndcg(des)
-# dn <- user_ndcg(dns)
-# 
-# pb <- user_p10(dbs)
-# pe <- user_p10(des)
-# pn <- user_p10(dns)
-# 
-# 
-# ##
-# ## to compare with vsn where user=10 is missing
-# ##
-# 
-# cat("## NDCG ###########################################################")
-# 
-# db2 <- subset(db, userno != 10)
-# de2 <- subset(de, userno != 10)
-# 
-# pb2 <- subset(pb, userno != 10)
-# pe2 <- subset(pe, userno != 10)
-# 
-# res <- wilcox.exact(db$ndcg, de$ndcg, paired=T); print(res)
-# res <- wilcox.exact(db$ndcg, de$ndcg, paired=T, alternative='less'); print(res)
-# res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T); print(res)
-# res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
-# 
-# cat("## P@10 ############################################################")
-# 
-# res <- wilcox.exact(pb$top10, pe$top10, paired=T); print(res)
-# res <- wilcox.exact(pb$top10, pe$top10, paired=T, alternative='less'); print(res)
-# 
-# res <- wilcox.exact(pb2$top10, pn$top10, paired=T); print(res)
-# res <- wilcox.exact(pb2$top10, pn$top10, paired=T, alternative='less'); print(res)
+res <- kruskal.test(p~sys, n); print(res)
+res <- pairwise.wilcox.test(n$p, n$sys); print(res)
+
+# by topic
+res <- aggregate(n$p, mean, by=list(n$sys,n$topicid)); print(res)
+
+n09<-subset(n, topicid==40009)
+n21<-subset(n, topicid==40021)
+n48<-subset(n, topicid==40048)
+
+res <- kruskal.test(p~sys, n09); print(res)
+res <- pairwise.wilcox.test(n09$p, n09$sys); print(res)
+
+res <- kruskal.test(p~sys, n48); print(res)
+res <- pairwise.wilcox.test(n48$p, n48$sys); print(res)
+
+res <- kruskal.test(p~sys, n21); print(res)
+res <- pairwise.wilcox.test(n21$p, n21$sys); print(res)

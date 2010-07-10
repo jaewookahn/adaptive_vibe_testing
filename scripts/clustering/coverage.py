@@ -13,14 +13,20 @@ cur = con.cursor()
 
 
 q = """
-select userid, action, object, info from history where action in ('open_doc') and userid like 'vs%' and userid != 'vst' and userid not like '%-01-%' and userid not like '%-02-%' and userid not like '%-20-%' order by datetime asc
+select userid, action, object, info from history where action in ('open_doc', 'save_note') and userid like 'vs%' and userid != 'vst' and userid not like '%-01-%' and userid not like '%-02-%' and userid not like '%-29-%' order by datetime asc
 """
 
 cur.execute(q)
 for row in cur:
-	userid, action, docno, info = row
+	userid, action, obj, info = row
+	
+	if action == 'open_doc':
+		docno = obj
+	
+	if action == 'save_note':
+		docno = info.split()[0].split("=")[1]
 	
 	if cli.has_key(docno):
 		rc = cli[docno]
 		system, docno, topicid = userid.split("-")
-		print system, docno, topicid, rc.split(":")[1]
+		print system, docno, topicid, action, rc.split(":")[1]

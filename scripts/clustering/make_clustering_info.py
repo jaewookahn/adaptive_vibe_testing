@@ -5,7 +5,7 @@ import string
 TOPIC = 40021
 
 def get_max(s):
-	temp = s.split()
+	temp = map(float, s.split())
 	max = 0
 	for id, p in enumerate(temp):
 		if max < p:
