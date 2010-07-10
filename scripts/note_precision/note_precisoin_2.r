@@ -2,7 +2,7 @@ library(reshape)
 library(sqldf)
 
 d <- read.table('../../data/note_precision_noerr.txt', header=T)
-n <- subset(d, userno > 2 & userno != 29)
+n <- subset(d, userno > 2 & userno != 29 & userno != 10)
 
 res <- aggregate(n$p, mean, by=list(n$sys)); print(res)
 
@@ -55,11 +55,15 @@ n09<-subset(n, topicid==40009)
 n21<-subset(n, topicid==40021)
 n48<-subset(n, topicid==40048)
 
+
+cat("########################## TOPIC 40009 ###\n")
 res <- kruskal.test(p~sys, n09); print(res)
 res <- pairwise.wilcox.test(n09$p, n09$sys); print(res)
 
+cat("########################## TOPIC 40048 ###\n")
 res <- kruskal.test(p~sys, n48); print(res)
 res <- pairwise.wilcox.test(n48$p, n48$sys); print(res)
 
+cat("########################## TOPIC 40021 ###\n")
 res <- kruskal.test(p~sys, n21); print(res)
 res <- pairwise.wilcox.test(n21$p, n21$sys); print(res)

@@ -7,7 +7,7 @@ dv <- read.table('../../data/system_precision_vistop_ndcg.txt', header=T)
 
 dv <- subset(dv, select=sys:inum)
 d <- rbind(db, dv)
-d <- subset(d, userno > 3 & userno != 29)
+d <- subset(d, userno > 3 & userno != 29 & userno != 10)
 
 res <- aggregate(d$ndcg, mean, by=list(d$sys)); print(res)
 
@@ -55,8 +55,12 @@ pe2 <- subset(pe, userno != 10)
 
 res <- wilcox.exact(db$ndcg, de$ndcg, paired=T); print(res)
 res <- wilcox.exact(db$ndcg, de$ndcg, paired=T, alternative='less'); print(res)
-res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T); print(res)
-res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
+
+res <- wilcox.exact(db$ndcg, dn$ndcg, paired=T); print(res)
+res <- wilcox.exact(db$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
+
+# res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T); print(res)
+# res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
 
 cat("## P@10 ############################################################")
 
@@ -65,5 +69,5 @@ res <- aggregate(d$top10, mean, by=list(d$sys)); print(res)
 res <- wilcox.exact(pb$top10, pe$top10, paired=T); print(res)
 res <- wilcox.exact(pb$top10, pe$top10, paired=T, alternative='less'); print(res)
 
-res <- wilcox.exact(pb2$top10, pn$top10, paired=T); print(res)
-res <- wilcox.exact(pb2$top10, pn$top10, paired=T, alternative='less'); print(res)
+# res <- wilcox.exact(pb2$top10, pn$top10, paired=T); print(res)
+# res <- wilcox.exact(pb2$top10, pn$top10, paired=T, alternative='less'); print(res)
