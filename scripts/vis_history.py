@@ -21,11 +21,11 @@ for row in cur:
 	dimx, dimy = dim.split(":")[1].split(" ")[0].split(",")
 	docs = docs.strip().split(":")[1].split(" ")
 
-	isum = False
+	isum = 0
 	for poi in pois.split():
 		label, value = poi.split(",")
 		if int(value) > 0:
-			isum = True
+			isum = 1
 			break
 			
 	if old_userid != userid:
@@ -46,7 +46,7 @@ for row in cur:
 			
 		rel = j.check(topicid, docno)
 		# rel = 1
-		print system, userno, topicid, recid, dimx, dimy, docno, docx, docy, rel
+		print system, userno, topicid, recid, dimx, dimy, docno, docx, docy, rel, isum
 					
 	recid += 1
 	old_userid = userid
