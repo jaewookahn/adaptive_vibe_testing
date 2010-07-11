@@ -55,8 +55,8 @@ for i, row in enumerate(cur):
 	recid += 1
 	old_userid = userid
 	
-	sys.stdout.write("\r%d/%d" % (i, N))
-	sys.stdout.flush()
+	sys.stderr.write("\r%d/%d" % (i, N))
+	sys.stderr.flush()
 			
 for rec in recs:
 	print "#", rec
