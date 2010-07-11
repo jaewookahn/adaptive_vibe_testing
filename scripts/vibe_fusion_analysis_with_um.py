@@ -2,7 +2,7 @@
 
 import math
 
-f = open("../data/vis_history.txt")
+f = open("../data/vis_history_2.txt")
 
 datapoints = {}
 centroids = {}
@@ -11,13 +11,13 @@ for s in f:
 	if s[0] == "#":
 		continue
 
-	system, userno, topicid, sessno, screenw, screenh, docno, x, y, rel = s.split()
+	system, userno, topicid, sessno, screenw, screenh, docno, x, y, rel, isum = s.split()
 	x = int(x); y = int(y); rel = int(rel)
 	
 	if userno in ['01', '02', '10','29']:
 		continue
 		
-	sessionid = "%s-%s-%s-%s" % (system, userno, topicid, sessno)
+	sessionid = "%s-%s-%s-%s-%s" % (system, userno, topicid, sessno, isum)
 	
 	if datapoints.has_key(sessionid):
 		datapoints[sessionid].append((x, y, rel))		
@@ -77,13 +77,13 @@ def get_DB(sid, d, c):
 
 	return DB, DB_compact, DB_distance, rx, ry, nx, ny
 
-print "sys userno topicid db dbcompact dbdistance crx cry cnx cny"
+print "sys userno topicid isum db dbcompact dbdistance crx cry cnx cny"
 
 for sessionid in datapoints.keys():
 	if centroids[sessionid][0] == -1:
 		continue
 	
 	db, dbc, dbd, rx, ry, nx, ny = get_DB(sessionid, datapoints, centroids)
-	system, userno, topicid, sessno = sessionid.split("-")
-	print system, userno, topicid, db, dbc, dbd, rx, ry, nx, ny
+	system, userno, topicid, sessno, isum = sessionid.split("-")
+	print system, userno, topicid, isum, db, dbc, dbd, rx, ry, nx, ny
 	

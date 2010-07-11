@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import sys; sys.path.append("../common")
 import MySQLdb
 from dbconfig import *
 from tdt4rel import Judge

@@ -1,4 +1,4 @@
 HOST = 'localhost'
-USER = 'jahn'
-PASS = 'rksekfvm'
-DB = 'jahn'
+USER = 'root'
+PASS = '!!berkeley'
+DB = 'yournews-tdt4'

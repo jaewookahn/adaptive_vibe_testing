@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import sys; sys.path.append('../common')
 from tdt4rel import Judge
 import MySQLdb, sys, bsddb
 
@@ -18,7 +19,7 @@ if subjectid == 'all':
 
 j = Judge()
 
-umtime = bsddb.btopen('umtime.bsddb', 'r')
+umtime = bsddb.btopen('../misc/umtime.bsddb', 'r')
 
 f = open("master_notes.txt", "a")
 
