@@ -59,8 +59,11 @@ res <- wilcox.exact(db$ndcg, de$ndcg, paired=T, alternative='less'); print(res)
 res <- wilcox.exact(db$ndcg, dn$ndcg, paired=T); print(res)
 res <- wilcox.exact(db$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
 
-# res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T); print(res)
-# res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
+res <- wilcox.exact(de$ndcg, dn$ndcg, paired=T); print(res)
+res <- wilcox.exact(de$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
+
+res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T); print(res)
+res <- wilcox.exact(db2$ndcg, dn$ndcg, paired=T, alternative='less'); print(res)
 
 cat("## P@10 ############################################################")
 
@@ -69,5 +72,8 @@ res <- aggregate(d$top10, mean, by=list(d$sys)); print(res)
 res <- wilcox.exact(pb$top10, pe$top10, paired=T); print(res)
 res <- wilcox.exact(pb$top10, pe$top10, paired=T, alternative='less'); print(res)
 
-# res <- wilcox.exact(pb2$top10, pn$top10, paired=T); print(res)
-# res <- wilcox.exact(pb2$top10, pn$top10, paired=T, alternative='less'); print(res)
+res <- wilcox.exact(pb$top10, pn$top10, paired=T); print(res)
+res <- wilcox.exact(pb$top10, pn$top10, paired=T, alternative='less'); print(res)
+
+res <- wilcox.exact(pb2$top10, pn$top10, paired=T); print(res)
+res <- wilcox.exact(pb2$top10, pn$top10, paired=T, alternative='less'); print(res)
