@@ -21,6 +21,13 @@ for row in cur:
 	dimx, dimy = dim.split(":")[1].split(" ")[0].split(",")
 	docs = docs.strip().split(":")[1].split(" ")
 
+	isum = False
+	for poi in pois.split():
+		label, value = poi.split(",")
+		if int(value) > 0:
+			isum = True
+			break
+			
 	if old_userid != userid:
 		recid = 1
 
