@@ -8,7 +8,7 @@ import MySQLdb, sys
 con = MySQLdb.connect(HOST, USER, PASS, DB)
 cur = con.cursor()
 
-cur.execute("select userid, action, info from history where action = 'reset_visualization'")
+cur.execute("select userid, action, info from history where action = 'reset_visualization' where userid like 'vs%-%'")
 
 j = Judge()
 
