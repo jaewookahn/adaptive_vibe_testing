@@ -24,10 +24,13 @@ for row in cur:
 
 	isum = 0
 	for poi in pois.split():
-		label, value = poi.split(",")
-		if int(value) > 0:
-			isum = 1
-			break
+		try:
+			label, value = poi.split(",")
+			if int(value) > 0:
+				isum = 1
+				break
+		except:
+			pass
 			
 	if old_userid != userid:
 		recid = 1
