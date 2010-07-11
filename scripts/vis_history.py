@@ -8,14 +8,14 @@ import MySQLdb, sys
 con = MySQLdb.connect(HOST, USER, PASS, DB)
 cur = con.cursor()
 
-cur.execute("select userid, action, info from history where action = 'reset_visualization' and userid like 'vs%-%'")
+N = cur.execute("select userid, action, info from history where action = 'reset_visualization' and userid like 'vs%-%'")
 
 j = Judge()
 
 recs = []
 old_userid = ""
 
-for row in cur:
+for i, row in enumerate(cur):
 	userid, action, info = row
 	dim, pois, docs = info.split("\t")
 	system, userno, topicid = userid.split("-")
@@ -54,6 +54,9 @@ for row in cur:
 					
 	recid += 1
 	old_userid = userid
+	
+	sys.stdout.write("\r%d/%d" % (i, N))
+	sys.stdout.flush()
 			
 for rec in recs:
 	print "#", rec
