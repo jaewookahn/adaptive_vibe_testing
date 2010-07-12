@@ -6,7 +6,7 @@ d <- read.table("../../data/open_precision2-2.txt")
 # open and do nothing ($V6, mistake)
 # user model is built ($V9)
 # evident outlier & error subject (1 and 2)
-ds <- subset(d, V6 > 0 & V9 == 1 & V2 > 2 & V2 != 29)
+ds <- subset(d, V6 > 0 & V9 == 1 & V2 > 2 & V2 != 29 & V2 != 10)
 
 ##
 ## repeated
@@ -27,6 +27,9 @@ res <- mean(dspall); print(res)
 
 res <- wilcox.exact(dspall$pb, dspall$pe, paired=T); print(res)
 res <- wilcox.exact(dspall$pb, dspall$pn, paired=T); print(res)
+
+res <- wilcox.exact(dspall$pb, dspall$pe, paired=T, alternative='greater'); print(res)
+res <- wilcox.exact(dspall$pb, dspall$pn, paired=T, alternative='greater'); print(res)
 
 
 dsbc <- aggregate(dsb$V5, sum, by=list(dsb$V2)); colnames(dsbc) <- c('userno', 'cb')

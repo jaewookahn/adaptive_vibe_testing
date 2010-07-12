@@ -34,6 +34,12 @@ d <- subset(d, inum == 1)
 
 dbin <- cbind(d, timeslot=paste("T", pmin(floor(d$time / 300) + 1, 4), sep=''))
 
+# dbin <- sqldf(c("update dbin set sys = 'TaskSieve' where sys = 'vsb'", 'select * from main.dbin'), method='raw')
+# dbin <- sqldf(c("update dbin set sys = 'VIBE' where sys = 'vse'", 'select * from main.dbin'), method='raw')
+# dbin <- sqldf(c("update dbin set sys = 'VIBE+NE' where sys = 'vsn'", 'select * from main.dbin'), method='raw')
+
+
+
 cat("*** Overall\n")
 res <- aggregate(dbin$ratiox, mean, by=list(dbin$timeslot)); print(res)
 

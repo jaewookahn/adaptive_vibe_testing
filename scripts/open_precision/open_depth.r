@@ -1,8 +1,14 @@
 library(gplots)
+library(sqldf)
 
 d<-read.table('../../data/open_depth.txt')
 dd<-subset(d, d$V6 != -1)
 dd<-subset(dd, d$V3 >3 & d$V3 != 29)
+
+dd <- sqldf(c("update dd set V1 = 'TaskSieve' where V1 = 'vsb'", 'select * from main.dd'), method='raw')
+dd <- sqldf(c("update dd set V1 = 'VIBE' where V1 = 'vse'", 'select * from main.dd'), method='raw')
+dd <- sqldf(c("update dd set V1 = 'VIBE+NE' where V1 = 'vsn'", 'select * from main.dd'), method='raw')
+
 #
 
 do <- subset(dd, dd$V2 == 'open_doc')
