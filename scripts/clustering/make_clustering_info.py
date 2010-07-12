@@ -1,8 +1,14 @@
 #!/usr/bin/python
 
 import string
+import sys
 
-TOPIC = 40021
+if len(sys.argv) != 3:
+	print "Usage: command TOPICID TOPICS"
+	sys.exit(1)
+
+TOPIC = sys.argv[1]
+TOPICS = sys.argv[2]
 
 def get_max(s):
 	temp = map(float, s.split())
@@ -21,7 +27,7 @@ for s in f:
 
 f.close()
 
-f = open("inf-%s-gamma.dat" % TOPIC)
+f = open("inf-%s-%s-gamma.dat" % (TOPICS, TOPIC))
 
 cl = {}
 for i, s in enumerate(f):
