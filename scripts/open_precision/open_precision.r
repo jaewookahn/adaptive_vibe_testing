@@ -101,3 +101,11 @@ cat("## rel doc discovery ################################################\n")
 ddb <- sqldf("select userno, count(*) bcount from (select distinct V2 userno, V4 docno from ds where V1 = 'vsb' and V5 = 1) x group by userno")
 dde <- sqldf("select userno, count(*) ecount from (select distinct V2 userno, V4 docno from ds where V1 = 'vse' and V5 = 1) x group by userno")
 ddn <- sqldf("select userno, count(*) ncount from (select distinct V2 userno, V4 docno from ds where V1 = 'vsn' and V5 = 1) x group by userno")
+
+
+
+####
+
+
+
+
