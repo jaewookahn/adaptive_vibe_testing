@@ -85,3 +85,16 @@ df <- rbind(df, df3)
 aggregate(df$opendoc_psg, mean, by=list(df$sys))
 shapiro.test(df$opendoc_psg)
 kruskal.test(opendoc_psg~sys, df)
+
+# by features
+
+me<-melt(pqe, id=c("userno", "sys"))
+me1<-subset(me, me$variable == 'adv_helpful' or me$variable == 'poi_loc' or me$variable == 'rel_exp')
+shapiro.test(me1$value)
+kruskal.test(value~variable, me1)
+pairwise.wilcox.test(me1$value, me1$variable)
+
+
+mn<-melt(pqn, id=c("userno", "sys"))
+mn1<-subset(mn, variable=="ne_useful" | variable=='ne_rel' | variable=='nevis_helpful')
+shapiro.test(mn1$value)
