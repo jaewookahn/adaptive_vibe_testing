@@ -1,3 +1,6 @@
+library(reshape)
+library(sqldf)
+
 pqb <- read.table("../../data/pq_sysb.txt", header=T, sep="\t")
 pqe <- read.table("../../data/pq_syse.txt", header=T, sep="\t")
 pqn <- read.table("../../data/pq_sysn.txt", header=T, sep="\t")
@@ -41,10 +44,75 @@ mean(pqn, na.rm=T)
 
 # positivity
 
+pos2 <- read.table("../../data/pq_positive.txt", sep="\t")
 shapiro.test(pos2$V2) # normality test
-
-pos2 <- read.table("../../pq.positive.txt", sep="\t")
 kruskal.test(V2~V1, pos2)
+
+# positivity2
+
+df1<-sqldf("select userno, sys, positive from pqb")
+df2<-sqldf("select userno, sys, positive from pqe")
+df3<-sqldf("select userno, sys, positive from pqn")
+
+df <- cbind(df1, epos=df2$positive)
+df <- cbind(df, npos=df3$positive)
+
+sqldf('select userno, epos-positive, npos-positive from df')
+
+sqldf('select d1, count(*) from (select userno, epos-positive d1, npos-positive d2 from df) x group by d1')
+
+sqldf('select d2, count(*) from (select userno, epos-positive d1, npos-positive d2 from df) x group by d2')
+
+sqldf('select d3, count(*) from (select userno, epos-positive d1, npos-positive d2, npos-epos d3 from df) x group by d3')
+
+# positivity by gender
+
+df1<-sqldf("select userno, sys, positive from pqb")
+df2<-sqldf("select userno, sys, positive from pqe")
+df3<-sqldf("select userno, sys, positive from pqn")
+
+df <- cbind(df1, epos=df2$positive)
+df <- cbind(df, npos=df3$positive)
+
+g<-read.table('../../data/pq_bio.txt', header=T, sep="\t")
+df<-cbind(df,g)
+
+aggregate(df$positive, mean, by=list(df$Gender))
+
+#   Group.1        x
+# 1       f 3.700000
+# 2       m 3.782609
+
+aggregate(df$epos, mean, by=list(df$Gender))
+
+#   Group.1        x
+# 1       f 2.900000
+# 2       m 3.304348
+
+aggregate(df$npos, mean, by=list(df$Gender))
+
+#   Group.1        x
+# 1       f 3.100000
+# 2       m 3.521739
+
+kruskal.test(positive~Gender, df)
+kruskal.test(epos~Gender, df)
+kruskal.test(npos~Gender, df)
+
+# 	Kruskal-Wallis rank sum test
+# 
+# data:  positive by Gender 
+# Kruskal-Wallis chi-squared = 0.131, df = 1, p-value = 0.7174
+# 
+# 	Kruskal-Wallis rank sum test
+# 
+# data:  epos by Gender 
+# Kruskal-Wallis chi-squared = 0.7791, df = 1, p-value = 0.3774
+# 
+# 	Kruskal-Wallis rank sum test
+# 
+# data:  npos by Gender 
+# Kruskal-Wallis chi-squared = 0.9532, df = 1, p-value = 0.3289
 
 # diffuculty
 
@@ -59,6 +127,15 @@ aggregate(df$difficulty, mean, by=list(df$topicid), na.rm=T)
 
 shapiro.test(df$difficulty)
 kruskal.test(difficulty~topicid, df)
+
+# topic vs. familiarity to difficulty
+
+df1<-sqldf("select topicid, familiar, difficulty from pqb")
+df2<-sqldf("select topicid, familiar, difficulty from pqe")
+df3<-sqldf("select topicid, familiar, difficulty from pqn")
+
+df <- rbind(df1, df2)
+df <- rbind(df, df3)
 
 # passage quality (Q2)
 
