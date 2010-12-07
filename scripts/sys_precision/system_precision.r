@@ -5,9 +5,11 @@ db<-read.table('../../data/system_precision_baseline.txt', sep=' ', header=T)
 dv<-read.table('../../data/system_precision_vistop.txt', sep=' ', header=T)
 dall <- rbind(db, dv)
 
-dclean <- subset(dall, userno != 1 & userno != 2 & userno != 29)
+#dclean <- subset(dall, userno != 1 & userno != 2 & userno != 29)
 # dclean <- subset(dall, dall$userno != 1 & dall$userno != 2 & dall$userno < 28 & dall$userno != 10)
 # dclean <- subset(dall, dall$userno < 28 & dall$userno > 2)
+
+dclean <- subset(d, userno >= 3 & userno != 29 & userno != 10)
 
 #######################################
 # OVERALL

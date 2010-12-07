@@ -7,7 +7,7 @@ dv <- read.table('../../data/system_precision_vistop_ndcg.txt', header=T)
 
 dv <- subset(dv, select=sys:inum)
 d <- rbind(db, dv)
-d <- subset(d, userno > 3 & userno != 29 & userno != 10)
+d <- subset(d, userno >= 3 & userno != 29 & userno != 10)
 
 res <- aggregate(d$ndcg, mean, by=list(d$sys)); print(res)
 
