@@ -106,3 +106,9 @@ res <- wilcox.test(nbs2, nns); print(res)
 
 nes3 <- nes[1:423]
 res <- wilcox.test(nns,nes3); print(res)
+
+#
+nn <- subset(n, sys != 'vsb')
+
+ggplot(nn, aes(x=p, y=ecdf(nn$p)(nn$p), xmin=0.9, group=sys, colour=sys, linetype=sys, xmin=0.9, xmax=1.0)) + geom_step()
+

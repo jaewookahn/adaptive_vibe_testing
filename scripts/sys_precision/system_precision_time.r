@@ -1,5 +1,9 @@
 library(car)
+<<<<<<< .mine
+# library(gplots)
+=======
 #library(gplots)
+>>>>>>> .r2911
 
 ds <- read.table("../../data/system_precision_vistop_with_time.txt", header=T)
 d <- subset(ds, userno > 2 & userno != 29)
