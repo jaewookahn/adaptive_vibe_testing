@@ -1,3 +1,4 @@
+sys userno topic docid rel time duration nextaction umon umvis
 vsb 01 40002 XIN20001127.0800.0071 1 54 51 save_note 0 0
 vsb 01 40002 XIN20001207.1400.0088 1 169 8 blur_doc 1 0
 vsb 01 40002 ALH20001124.1900.0133 1 216 15 save_note 1 1
